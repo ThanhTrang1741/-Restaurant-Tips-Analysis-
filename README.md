@@ -9,10 +9,13 @@ It includes details about the tips given to restaurant staff, such as the total 
 ## **👣 The First Steps**
 ### **📥 Data import**
 First, let's import the needed libraries: Pandas & Matplotlib
+
     import pandas as pd
     import matplotlib.pyplot as plt
+    
 Then load data from the following link: https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv
     pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
+
 
     	id	total_bill	tip	sex	smoker	day	time	size
 0	0	16.99	1.01	Female	No	Sun	Dinner	2
