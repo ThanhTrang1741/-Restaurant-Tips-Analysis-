@@ -283,15 +283,10 @@ Plot the histogram for the whole dataset tips distribution.
 <u>Use the following settings:</u>
 
 * Size: `15 x 5`
-* 
 * Color: `#74b9ff`
-* 
 * X-axis label: `Tip value`
-* 
 * Y-axis label: `Frequency`
-* 
 * Chart title: `Whole dataset tip values`
-* 
 * Gridlines: `show`
 
    # Plot the histogram
@@ -316,12 +311,12 @@ Plot the histogram for smokers tips distribution.
 
 Use the following settings:
 
-Size: 15 x 5
-Color: #ff7675
-X-axis label: Tip value
-Y-axis label: Frequency
-Chart title: Smokers tip values
-Gridlines: show
+* Size: 15 x 5
+* Color: #ff7675
+* X-axis label: Tip value
+* Y-axis label: Frequency
+* Chart title: Smokers tip values
+* Gridlines: show
 
     plt.figure(figsize=(15, 5))
     plt.hist(smokers_df['tip'], bins=10, color='#ff7675')
@@ -345,12 +340,12 @@ Plot the histogram for non-smokers tips distribution.
 
 Use the following settings:
 
-Size: 15 x 5
-Color: #55efc4
-X-axis label: Tip value
-Y-axis label: Frequency
-Chart title: Non-smokers tip values
-Gridlines: show
+* Size: 15 x 5
+* Color: #55efc4
+* X-axis label: Tip value
+* Y-axis label: Frequency
+* Chart title: Non-smokers tip values
+* Gridlines: show
 
     plt.figure(figsize=(15, 5))
     plt.hist(non_smokers_df['tip'], bins=10, color='#55efc4')
