@@ -241,14 +241,13 @@ Make the same dataframe containing the measures of central tendency for non-smok
 | median | 2.7400 |
 
 
-##### **📝 Conclusion**
+##### **📝 Conclusion**\
+Let's show the retrieved results together (we already have the code written for you 😉):
+
     all_vals_dict = {
-    'Common': {'min': common_tip_min, 'max': common_tip_max, 'mean': common_tip_mean, 'median': 
-    common_tip_median},
-    'Smokers': {'min': smokers_tip_min, 'max': smokers_tip_max, 'mean': smokers_tip_mean, 
-    'median': smokers_tip_median},
-    'Non-smokers': {'min': non_smokers_tip_min, 'max': non_smokers_tip_max, 'mean': 
-    non_smokers_tip_mean, 'median': non_smokers_tip_median}
+       'Common': {'min': common_tip_min, 'max': common_tip_max, 'mean': common_tip_mean, 'median': common_tip_median},
+       'Smokers': {'min': smokers_tip_min, 'max': smokers_tip_max, 'mean': smokers_tip_mean, 'median': smokers_tip_median},
+       'Non-smokers': {'min': non_smokers_tip_min, 'max': non_smokers_tip_max, 'mean': non_smokers_tip_mean, 'median': non_smokers_tip_median}
     }
 
    # Make a dataframe
@@ -282,11 +281,17 @@ This is because they only show the most typical values. However, the way data is
 Plot the histogram for the whole dataset tips distribution.
 
 <u>Use the following settings:</u>
+
 * Size: `15 x 5`
+* 
 * Color: `#74b9ff`
+* 
 * X-axis label: `Tip value`
+* 
 * Y-axis label: `Frequency`
+* 
 * Chart title: `Whole dataset tip values`
+* 
 * Gridlines: `show`
 
    # Plot the histogram
