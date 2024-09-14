@@ -17,7 +17,7 @@ Then load data from the following link: https://raw.githubusercontent.com/RusAbk
     pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
 
 
-    	id	total_bill	tip	sex	smoker	day	time	size
+id	total_bill	tip	sex	smoker	day	time	size
 0	0	16.99	1.01	Female	No	Sun	Dinner	2
 1	1	10.34	1.66	Male	No	Sun	Dinner	3
 2	2	21.01	3.50	Male	No	Sun	Dinner	3
@@ -29,6 +29,8 @@ Then load data from the following link: https://raw.githubusercontent.com/RusAbk
 241	241	22.67	2.00	Male	Yes	Sat	Dinner	2
 242	242	17.82	1.75	Male	No	Sat	Dinner	2
 243	243	18.78	3.00	Female	No	Thur	Dinner	2
+244 rows × 8 columns
+
 
 
 ### **🔍 Data exploration**
