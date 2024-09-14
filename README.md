@@ -506,10 +506,10 @@ Perform the same steps based on the column **day**.
     weekdays_tip_median = weekdays_df['tip'].median()
 
    # Calculate measures of central tendency for weekends
-   weekends_tip_min = weekends_df['tip'].min()
-   weekends_tip_max = weekends_df['tip'].max()
-   weekends_tip_mean = weekends_df['tip'].mean()
-   weekends_tip_median = weekends_df['tip'].median()
+    weekends_tip_min = weekends_df['tip'].min()
+    weekends_tip_max = weekends_df['tip'].max()
+    weekends_tip_mean = weekends_df['tip'].mean()
+    weekends_tip_median = weekends_df['tip'].median()
 
    # Print the results
     print("Weekdays")
