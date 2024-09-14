@@ -35,13 +35,14 @@ Then load data from the following link: https://raw.githubusercontent.com/RusAbk
 ### **🔍 Data exploration**
     df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
     df.head()
-
-id	total_bill	tip	sex	smoker	day	time	size
-0	0	16.99	1.01	Female	No	Sun	Dinner	2
-1	1	10.34	1.66	Male	No	Sun	Dinner	3
-2	2	21.01	3.50	Male	No	Sun	Dinner	3
-3	3	23.68	3.31	Male	No	Sun	Dinner	2
-4	4	24.59	3.61	Female	No	Sun	Dinner	4
+    
+|   | id | total_bill |  tip |    sex | smoker | day |   time | size |
+|--:|---:|-----------:|-----:|-------:|-------:|----:|-------:|-----:|
+| 0 |  0 |      16.99 | 1.01 | Female |     No | Sun | Dinner |    2 |
+| 1 |  1 |      10.34 | 1.66 |   Male |     No | Sun | Dinner |    3 |
+| 2 |  2 |      21.01 | 3.50 |   Male |     No | Sun | Dinner |    3 |
+| 3 |  3 |      23.68 | 3.31 |   Male |     No | Sun | Dinner |    2 |
+| 4 |  4 |      24.59 | 3.61 | Female |     No | Sun | Dinner |    4 |
 
 
 > 🎉 Great! It seems to be okay.
@@ -64,15 +65,15 @@ Show the columns of the dataframe and their types:
 
     df.dtypes
 
-    id	int64
-total_bill	float64
-tip	float64
-sex	object
-smoker	object
-day	object
-time	object
-size	int64
-dtype: object
+|     id     |   int64 |
+|:----------:|--------:|
+| total_bill | float64 |
+|     tip    | float64 |
+|     sex    |  object |
+|   smoker   |  object |
+|     day    |  object |
+|    time    |  object |
+|    size    |   int64 |
 
 
 > **Ooops... 🤔**
@@ -82,19 +83,30 @@ Let's fix their types and make them string:
 
     df.astype({'sex': 'string', 'smoker': 'string', 'day': 'string', 'time': 'string'}).dtypes
 
+|     id     |          int64 |
+|:----------:|---------------:|
+| total_bill |        float64 |
+|     tip    |        float64 |
+|     sex    | string[python] |
+|   smoker   | string[python] |
+|     day    | string[python] |
+|    time    | string[python] |
+|    size    |          int64 |
+
 #### **Basic descriptive statistics**
 
     df.describe()
 
-	id	total_bill	tip	size
-count	244.000000	244.000000	244.000000	244.000000
-mean	121.500000	19.785943	2.998279	2.569672
-std	70.580923	8.902412	1.383638	0.951100
-min	0.000000	3.070000	1.000000	1.000000
-25%	60.750000	13.347500	2.000000	2.000000
-50%	121.500000	17.795000	2.900000	2.000000
-75%	182.250000	24.127500	3.562500	3.000000
-max	243.000000	50.810000	10.000000	6.000000
+|       |         id | total_bill |        tip |       size |
+|------:|-----------:|-----------:|-----------:|-----------:|
+| count | 244.000000 | 244.000000 | 244.000000 | 244.000000 |
+|  mean | 121.500000 |  19.785943 |   2.998279 |   2.569672 |
+|  std  |  70.580923 |   8.902412 |   1.383638 |   0.951100 |
+|  min  |   0.000000 |   3.070000 |   1.000000 |   1.000000 |
+|  25%  |  60.750000 |  13.347500 |   2.000000 |   2.000000 |
+|  50%  | 121.500000 |  17.795000 |   2.900000 |   2.000000 |
+|  75%  | 182.250000 |  24.127500 |   3.562500 |   3.000000 |
+|  max  | 243.000000 |  50.810000 |  10.000000 |   6.000000 |
 
 Great! Now we know a little more about our data.
 
@@ -109,24 +121,26 @@ Create a new dataframe `smokers_df` containing only info about smokers.
     smokers_df = df[df['smoker'] == 'Yes']
     smokers_df.head(5)
     
-id	total_bill	tip	sex	smoker	day	time	size
-56	56	38.01	3.00	Male	Yes	Sat	Dinner	4
-58	58	11.24	1.76	Male	Yes	Sat	Dinner	2
-60	60	20.29	3.21	Male	Yes	Sat	Dinner	2
-61	61	13.81	2.00	Male	Yes	Sat	Dinner	2
-62	62	11.02	1.98	Male	Yes	Sat	Dinner	2
+|  id | total_bill |       tip |       sex |   smoker | day | time |   size |   |
+|----:|-----------:|----------:|----------:|---------:|----:|-----:|-------:|---|
+|  56 |         56 |     38.01 |      3.00 |     Male | Yes |  Sat | Dinner | 4 |
+|  58 |         58 |     11.24 |      1.76 |     Male | Yes |  Sat | Dinner | 2 |
+|  60 |         60 |     20.29 |      3.21 |     Male | Yes |  Sat | Dinner | 2 |
+|  61 |         61 |     13.81 |      2.00 |     Male | Yes |  Sat | Dinner | 2 |
+|  62 |         62 |     11.02 |      1.98 |     Male | Yes |  Sat | Dinner | 2 |
 
 Also create another one dataframe `non_smokers_df` containing only non-smokers.
 
     non_smokers_df = df[df['smoker'] == 'No']
     non_smokers_df.head(5)
 
-	id	total_bill	tip	sex	smoker	day	time	size
-0	0	16.99	1.01	Female	No	Sun	Dinner	2
-1	1	10.34	1.66	Male	No	Sun	Dinner	3
-2	2	21.01	3.50	Male	No	Sun	Dinner	3
-3	3	23.68	3.31	Male	No	Sun	Dinner	2
-4	4	24.59	3.61	Female	No	Sun	Dinner	4
+|     |         id | total_bill |       tip |      sex | smoker | day |   time | size |
+|----:|-----------:|-----------:|----------:|---------:|-------:|----:|-------:|-----:|
+|  0  |          0 |      16.99 |      1.01 |   Female |     No | Sun | Dinner |    2 |
+|  1  |          1 |      10.34 |      1.66 |     Male |     No | Sun | Dinner |    3 |
+|  2  |          2 |      21.01 |      3.50 |     Male |     No | Sun | Dinner |    3 |
+|  3  |          3 |      23.68 |      3.31 |     Male |     No | Sun | Dinner |    2 |
+|  4  |          4 |      24.59 |      3.61 |   Female |     No | Sun | Dinner |    4 |
 
 #### **Compare their measures of central tendency**
 As we know, measures of central tendency is one of the basic tools, that allow us to compare different datasets as it shows the most typical values.
@@ -155,10 +169,11 @@ Let's show the resulting values for whole dataset (we already have the code writ
    # Output the dataframe
     common_mct
 
-min	1.0000
-max	10.0000
-mean	2.9983
-median	2.9000
+|   min  |  1.0000 |
+|:------:|--------:|
+|   max  | 10.0000 |
+|  mean  |  2.9983 |
+| median |  2.9000 |
 
 ##### **🚬 Smokers**
 Do the same taking into account only smokers. Use the following variables:
@@ -187,11 +202,11 @@ Make the same dataframe containing the measures of central tendency for smokers 
    # Output the dataframe
     smokers_mct
 
-	0
-min	1.0000
-max	10.0000
-mean	3.0087
-median	3.0000
+|   min  |  1.0000 |
+|:------:|--------:|
+|   max  | 10.0000 |
+|  mean  |  3.0087 |
+| median |  3.0000 |
 
 ##### **🚭 Non-smokers**
 Now repeat it for non-smokers. Use the following variables:
@@ -219,11 +234,12 @@ Make the same dataframe containing the measures of central tendency for non-smok
    # Output the dataframe
     non_smokers_mct
 
-	0
-min	1.0000
-max	9.0000
-mean	2.9919
-median	2.7400
+|   min  | 1.0000 |
+|:------:|-------:|
+|   max  | 9.0000 |
+|  mean  | 2.9919 |
+| median | 2.7400 |
+
 
 ##### **📝 Conclusion**
     all_vals_dict = {
@@ -240,11 +256,13 @@ median	2.7400
    # Output the dataframe
     all_mct
 
-	Common	Smokers	Non-smokers
-min	1.000000	1.00000	1.000000
-max	9.000000	10.00000	9.000000
-mean	2.991854	3.00871	2.991854
-median	2.740000	3.00000	2.740000
+
+|        |   Common |  Smokers | Non-smokers |
+|-------:|---------:|---------:|------------:|
+|   min  | 1.000000 |  1.00000 |    1.000000 |
+|   max  | 9.000000 | 10.00000 |    9.000000 |
+|  mean  | 2.991854 |  3.00871 |    2.991854 |
+| median | 2.740000 |  3.00000 |    2.740000 |
 
 **Insights based on measures of central tendency comparison:**
 1. Insight 1 : Smokers have a lower range of tips (1.00 to 4.00) compared to Non-Smokers (1.50 to 10.00). This indicates that tips for non-smokers can be substantially higher.
@@ -381,63 +399,63 @@ Insight 2:The higher median for smokers suggests that their tip distribution mig
 
 ### **👨👩 Do males give more tips?**
 
-import pandas as pd
-import matplotlib.pyplot as plt
+    import pandas as pd
+    import matplotlib.pyplot as plt
 
-# Load the dataset
-df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
+   # Load the dataset
+    df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
 
 
-# Filter the DataFrame for male and female
-male_df = df[df['sex'] == 'Male']
-female_df = df[df['sex'] == 'Female']
+   # Filter the DataFrame for male and female
+    male_df = df[df['sex'] == 'Male']
+    female_df = df[df['sex'] == 'Female']
 
-# Calculate measures of central tendency for male
-male_tip_min = male_df['tip'].min()
-male_tip_max = male_df['tip'].max()
-male_tip_mean = male_df['tip'].mean()
-male_tip_median = male_df['tip'].median()
+   # Calculate measures of central tendency for male
+    male_tip_min = male_df['tip'].min()
+    male_tip_max = male_df['tip'].max()
+    male_tip_mean = male_df['tip'].mean()
+    male_tip_median = male_df['tip'].median()
 
-# Calculate measures of central tendency for female
-female_tip_min = female_df['tip'].min()
-female_tip_max = female_df['tip'].max()
-female_tip_mean = female_df['tip'].mean()
-female_tip_median = female_df['tip'].median()
+   # Calculate measures of central tendency for female
+    female_tip_min = female_df['tip'].min()
+    female_tip_max = female_df['tip'].max()
+    female_tip_mean = female_df['tip'].mean()
+    female_tip_median = female_df['tip'].median()
 
-# Print the results
-print("male")
-print(f"min: {male_tip_min:.6f}")
-print(f"max: {male_tip_max:.6f}")
-print(f"mean: {male_tip_mean:.6f}")
-print(f"median: {male_tip_median:.6f}")
+   # Print the results
+    print("male")
+    print(f"min: {male_tip_min:.6f}")
+    print(f"max: {male_tip_max:.6f}")
+    print(f"mean: {male_tip_mean:.6f}")
+    print(f"median: {male_tip_median:.6f}")
 
-print("\nfemale")
-print(f"min: {female_tip_min:.6f}")
-print(f"max: {female_tip_max:.6f}")
-print(f"mean: {female_tip_mean:.6f}")
-print(f"median: {female_tip_median:.6f}")
+    print("\nfemale")
+    print(f"min: {female_tip_min:.6f}")
+    print(f"max: {female_tip_max:.6f}")
+    print(f"mean: {female_tip_mean:.6f}")
+    print(f"median: {female_tip_median:.6f}")
 
-# Create subplots for histograms
-fig, axs = plt.subplots(1, 2, figsize=(15, 5), sharey=True)
+   # Create subplots for histograms
+    fig, axs = plt.subplots(1, 2, figsize=(15, 5), sharey=True)
 
-# Plot histogram for male and female
-axs[0].hist(lunch_df['tip'], bins=10, color='#ff7675')
-axs[0].set_title('male tip values')
-axs[0].set_xlabel('Tip value')
-axs[0].set_ylabel('Frequency')
-axs[0].grid(True)
+   # Plot histogram for male and female
+    axs[0].hist(lunch_df['tip'], bins=10, color='#ff7675')
+    axs[0].set_title('male tip values')
+    axs[0].set_xlabel('Tip value')
+    axs[0].set_ylabel('Frequency')
+    axs[0].grid(True)
 
-# Plot histogram for male and female
-axs[1].hist(dinner_df['tip'], bins=10, color='#55efc4')
-axs[1].set_title('female tip values')
-axs[1].set_xlabel('Tip value')
-axs[1].grid(True)
+   # Plot histogram for male and female
+    axs[1].hist(dinner_df['tip'], bins=10, color='#55efc4')
+    axs[1].set_title('female tip values')
+    axs[1].set_xlabel('Tip value')
+    axs[1].grid(True)
 
-# Adjust layout
-plt.tight_layout()
+   # Adjust layout
+    plt.tight_layout()
 
-# Display the plot
-plt.show()
+   # Display the plot
+    plt.show()
 
 male
 min: 1.000000
@@ -467,64 +485,64 @@ Overall, males exhibit greater variability in the data with generally higher ave
 ### **📆 Do weekends bring more tips?**
 Perform the same steps based on the column **day**.
 
-import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt
 
-# Load the dataset
-df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
+   # Load the dataset
+    df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
 
-weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-weekends = ['Sat', 'Sun']
+    weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+    weekends = ['Sat', 'Sun']
 
-# Filter the DataFrame for weekdays and weekends
-weekdays_df = df[df['day'].isin(weekdays)]
-weekends_df = df[df['day'].isin(weekends)]
+   # Filter the DataFrame for weekdays and weekends
+    weekdays_df = df[df['day'].isin(weekdays)]
+    weekends_df = df[df['day'].isin(weekends)]
 
-# Calculate measures of central tendency for weekdays
-weekdays_tip_min = weekdays_df['tip'].min()
-weekdays_tip_max = weekdays_df['tip'].max()
-weekdays_tip_mean = weekdays_df['tip'].mean()
-weekdays_tip_median = weekdays_df['tip'].median()
+   # Calculate measures of central tendency for weekdays
+    weekdays_tip_min = weekdays_df['tip'].min()
+    weekdays_tip_max = weekdays_df['tip'].max()
+    weekdays_tip_mean = weekdays_df['tip'].mean()
+    weekdays_tip_median = weekdays_df['tip'].median()
 
-# Calculate measures of central tendency for weekends
-weekends_tip_min = weekends_df['tip'].min()
-weekends_tip_max = weekends_df['tip'].max()
-weekends_tip_mean = weekends_df['tip'].mean()
-weekends_tip_median = weekends_df['tip'].median()
+   # Calculate measures of central tendency for weekends
+   weekends_tip_min = weekends_df['tip'].min()
+   weekends_tip_max = weekends_df['tip'].max()
+   weekends_tip_mean = weekends_df['tip'].mean()
+   weekends_tip_median = weekends_df['tip'].median()
 
-# Print the results
-print("Weekdays")
-print(f"min: {weekdays_tip_min:.6f}")
-print(f"max: {weekdays_tip_max:.6f}")
-print(f"mean: {weekdays_tip_mean:.6f}")
-print(f"median: {weekdays_tip_median:.6f}")
+   # Print the results
+    print("Weekdays")
+    print(f"min: {weekdays_tip_min:.6f}")
+    print(f"max: {weekdays_tip_max:.6f}")
+    print(f"mean: {weekdays_tip_mean:.6f}")
+    print(f"median: {weekdays_tip_median:.6f}")
 
-print("\nWeekends")
-print(f"min: {weekends_tip_min:.6f}")
-print(f"max: {weekends_tip_max:.6f}")
-print(f"mean: {weekends_tip_mean:.6f}")
-print(f"median: {weekends_tip_median:.6f}")
+    print("\nWeekends")
+    print(f"min: {weekends_tip_min:.6f}")
+    print(f"max: {weekends_tip_max:.6f}")
+    print(f"mean: {weekends_tip_mean:.6f}")
+    print(f"median: {weekends_tip_median:.6f}")
 
-# Create subplots for histograms
-fig, axs = plt.subplots(1, 2, figsize=(15, 5), sharey=True)
+   # Create subplots for histograms
+    fig, axs = plt.subplots(1, 2, figsize=(15, 5), sharey=True)
 
-# Plot histogram for weekdays
-axs[0].hist(weekdays_df['tip'], bins=10, color='#ff7675')
-axs[0].set_title('Weekdays tip values')
-axs[0].set_xlabel('Tip value')
-axs[0].set_ylabel('Frequency')
-axs[0].grid(True)
+   # Plot histogram for weekdays
+    axs[0].hist(weekdays_df['tip'], bins=10, color='#ff7675')
+    axs[0].set_title('Weekdays tip values')
+    axs[0].set_xlabel('Tip value')
+    axs[0].set_ylabel('Frequency')
+    axs[0].grid(True)
 
-# Plot histogram for weekends
-axs[1].hist(weekends_df['tip'], bins=10, color='#55efc4')
-axs[1].set_title('Weekends tip values')
-axs[1].set_xlabel('Tip value')
-axs[1].grid(True)
+   # Plot histogram for weekends
+    axs[1].hist(weekends_df['tip'], bins=10, color='#55efc4')
+    axs[1].set_title('Weekends tip values')
+    axs[1].set_xlabel('Tip value')
+    axs[1].grid(True)
 
-# Adjust layout
-plt.tight_layout()
+   # Adjust layout
+    plt.tight_layout()
 
-# Display the plot
-plt.show()
+   # Display the plot
+    plt.show()
 
 Weekdays
 min: 1.000000
@@ -553,63 +571,63 @@ In conclusion, while the typical tip amount (median) does not differ between wee
 ### **🕑 Do dinners bring more tips?**
 Perform the same steps based on the column **time**.
 
-import pandas as pd
-import matplotlib.pyplot as plt
+    import pandas as pd
+    import matplotlib.pyplot as plt
 
-# Load the dataset
-df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
+   # Load the dataset
+    df=pd.read_csv('https://raw.githubusercontent.com/RusAbk/sca_datasets/main/tips.csv')
 
 
-# Filter the DataFrame for lunch and dinner
-lunch_df = df[df['time'] == 'Lunch']
-dinner_df = df[df['time'] == 'Dinner']
+   # Filter the DataFrame for lunch and dinner
+    lunch_df = df[df['time'] == 'Lunch']
+    dinner_df = df[df['time'] == 'Dinner']
 
-# Calculate measures of central tendency for lunch
-lunch_tip_min = lunch_df['tip'].min()
-lunch_tip_max = lunch_df['tip'].max()
-lunch_tip_mean = lunch_df['tip'].mean()
-lunch_tip_median = lunch_df['tip'].median()
+   # Calculate measures of central tendency for lunch
+    lunch_tip_min = lunch_df['tip'].min()
+    lunch_tip_max = lunch_df['tip'].max()
+    lunch_tip_mean = lunch_df['tip'].mean()
+    lunch_tip_median = lunch_df['tip'].median()
 
-# Calculate measures of central tendency for dinner
-dinner_tip_min = dinner_df['tip'].min()
-dinner_tip_max = dinner_df['tip'].max()
-dinner_tip_mean = dinner_df['tip'].mean()
-dinner_tip_median = dinner_df['tip'].median()
+   # Calculate measures of central tendency for dinner
+    dinner_tip_min = dinner_df['tip'].min()
+    dinner_tip_max = dinner_df['tip'].max()
+    dinner_tip_mean = dinner_df['tip'].mean()
+    dinner_tip_median = dinner_df['tip'].median()
 
-# Print the results
-print("lunch")
-print(f"min: {lunch_tip_min:.6f}")
-print(f"max: {lunch_tip_max:.6f}")
-print(f"mean: {lunch_tip_mean:.6f}")
-print(f"median: {lunch_tip_median:.6f}")
+   # Print the results
+    print("lunch")
+    print(f"min: {lunch_tip_min:.6f}")
+    print(f"max: {lunch_tip_max:.6f}")
+    print(f"mean: {lunch_tip_mean:.6f}")
+    print(f"median: {lunch_tip_median:.6f}")
 
-print("\ndinner")
-print(f"min: {dinner_tip_min:.6f}")
-print(f"max: {dinner_tip_max:.6f}")
-print(f"mean: {dinner_tip_mean:.6f}")
-print(f"median: {dinner_tip_median:.6f}")
+    print("\ndinner")
+    print(f"min: {dinner_tip_min:.6f}")
+    print(f"max: {dinner_tip_max:.6f}")
+    print(f"mean: {dinner_tip_mean:.6f}")
+    print(f"median: {dinner_tip_median:.6f}")
 
-# Create subplots for histograms
-fig, axs = plt.subplots(1, 2, figsize=(15, 5), sharey=True)
+   # Create subplots for histograms
+    fig, axs = plt.subplots(1, 2, figsize=(15, 5), sharey=True)
 
-# Plot histogram for weekdays
-axs[0].hist(lunch_df['tip'], bins=10, color='#ff7675')
-axs[0].set_title('Lunch tip values')
-axs[0].set_xlabel('Tip value')
-axs[0].set_ylabel('Frequency')
-axs[0].grid(True)
+   # Plot histogram for weekdays
+    axs[0].hist(lunch_df['tip'], bins=10, color='#ff7675')
+    axs[0].set_title('Lunch tip values')
+    axs[0].set_xlabel('Tip value')
+    axs[0].set_ylabel('Frequency')
+    axs[0].grid(True)
 
-# Plot histogram for weekends
-axs[1].hist(dinner_df['tip'], bins=10, color='#55efc4')
-axs[1].set_title('Dinner tip values')
-axs[1].set_xlabel('Tip value')
-axs[1].grid(True)
+   # Plot histogram for weekends
+    axs[1].hist(dinner_df['tip'], bins=10, color='#55efc4')
+    axs[1].set_title('Dinner tip values')
+    axs[1].set_xlabel('Tip value')
+    axs[1].grid(True)
 
-# Adjust layout
-plt.tight_layout()
+   # Adjust layout
+    plt.tight_layout()
 
-# Display the plot
-plt.show()
+   # Display the plot
+    plt.show()
 
 lunch
 min: 1.250000
