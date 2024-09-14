@@ -318,6 +318,7 @@ Use the following settings:
 * Chart title: Smokers tip values
 * Gridlines: show
 
+
     plt.figure(figsize=(15, 5))
     plt.hist(smokers_df['tip'], bins=10, color='#ff7675')
 
