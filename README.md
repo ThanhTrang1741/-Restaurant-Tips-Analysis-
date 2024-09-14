@@ -9,5 +9,5 @@ It includes details about the tips given to restaurant staff, such as the total 
 ## **👣 The First Steps**
 ### **📥 Data import**
 First, let's import the needed libraries: Pandas & Matplotlib
-    import pandas as pd
-    import matplotlib.pyplot as plt
+       import pandas as pd
+       import matplotlib.pyplot as plt
